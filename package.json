@@ -1,0 +1,33 @@
+{
+  "name": "json-log-filter",
+  "version": "0.0.1",
+  "description": "filter json log",
+  "main": "./lib/index.js",
+  "bin": {
+    "filter": "./bin/cli.js"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "logmon": "*"
+  },
+  "scripts": {
+    "release:major": "npm version major && npm publish && git push --follow-tags",
+    "release:minor": "npm version minor && npm publish && git push --follow-tags",
+    "release:patch": "npm version patch && npm publish && git push --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seandou/json-log-filter.git"
+  },
+  "keywords": [
+    "json",
+    "log",
+    "filter"
+  ],
+  "author": "Sean Dou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seandou/json-log-filter/issues"
+  },
+  "homepage": "https://github.com/seandou/json-log-filter#readme"
+}
