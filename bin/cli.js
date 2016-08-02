@@ -28,7 +28,12 @@ var onEnd = function() {
   console.log('');
 };
 
+process.on('SIGPIPE', process.exit);
+
 process.stdin.pipe(split(JSON.parse))
   .on('data', onData)
   .on('error', onError)
   .on('end', onEnd);
+
+process.on('uncaughtException', function() {});
+
