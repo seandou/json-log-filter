@@ -3,8 +3,8 @@
 'use strict';
 
 var minimist = require('minimist');
-var split = require('logmon').split;
 var filter = require('./../lib/filter');
+var splitter = require('./../lib/splitter');
 
 var args = minimist(process.argv.slice(2))['_'];
 var options = {
@@ -13,10 +13,15 @@ var options = {
   format: args[2]
 };
 
-var onData = function(obj) {
-  var output = filter(obj, options);
-  if (output) {
-    console.log(output);
+var onData = function(data) {
+  try {
+    var obj = JSON.parse(data);
+    var output = filter(obj, options);
+    if (output) {
+      console.log(output);
+    }    
+  } catch(e) {
+    console.log(e);
   }
 };
 
@@ -28,7 +33,7 @@ var onEnd = function() {
   console.log('');
 };
 
-process.stdin.pipe(split(JSON.parse))
+process.stdin.pipe(splitter)
   .on('data', onData)
   .on('error', onError)
   .on('end', onEnd);
